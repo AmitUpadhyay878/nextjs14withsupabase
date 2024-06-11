@@ -1,18 +1,13 @@
-
-// import { Inter } from "next/font/google";
-import { MyMetadata } from "@/interfaces/MetaData";
-import "./globals.scss";
-
-
-// const inter = Inter({ subsets: ["latin"] });
-
+import React from 'react'
+import RegisterForm from './_components/RegisterForm'
+import { MyMetadata } from '@/interfaces/MetaData';
 
 
 export async function generateMetadata(): Promise<MyMetadata> {
   return {
-    title: `Nextjs14 with Supabase June 2024`,
-    description: "MyApp",
-    url: `/`,
+    title: `Register`,
+    description: "Register Page",
+    url: `/register`,
     authors: [
       { name: 'Amit Upadhyay', url: 'https://github.com/AmitUpadhyay878' },
     ],
@@ -21,12 +16,12 @@ export async function generateMetadata(): Promise<MyMetadata> {
     referrer: 'origin-when-cross-origin',
     keywords: ['nextjs14', 'supabase', 'Nextjs14'],
     openGraph: {
-      title: `Nextjs14 with Supabase June 2024`,
-      description: "My App",
+      title: `Register`,
+      description: "Register Page",
       images: [], // You can add image URLs here
     },
     alternates: {
-      canonical: `/`,
+      canonical: `/register`,
       languages: {
         'en-US': '/en-US',
       },
@@ -46,10 +41,14 @@ export async function generateMetadata(): Promise<MyMetadata> {
     },
   };
 }
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
-  return (children);
+
+const RegisterPage = () => {
+  return (
+  <>
+    <div>Register Page</div>
+    <RegisterForm />
+  </>
+  )
 }
+
+export default RegisterPage

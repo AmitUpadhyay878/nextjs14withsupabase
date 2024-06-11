@@ -1,0 +1,27 @@
+// import { supabase,supabaseAdmin } from "@/lib/supabase";
+import AboutusSection from "./_components/AboutusSection";
+import HeroSection from "./_components/HeroSection";
+
+
+export default function Home() {
+
+//     async function newView(){
+//     const{data,error} = await supabase
+//    .from('views')
+//    .insert({
+//     name:"abccccc"
+//    })
+
+//    if(data) console.log(data," view data")
+//     if(error) console.log(error," view error")
+//  }
+ 
+//  newView()
+
+  return (
+    <>
+   <HeroSection />
+   <AboutusSection />
+    </>
+  );
+}

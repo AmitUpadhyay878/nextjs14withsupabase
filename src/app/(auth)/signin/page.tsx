@@ -1,18 +1,13 @@
-
-// import { Inter } from "next/font/google";
-import { MyMetadata } from "@/interfaces/MetaData";
-import "./globals.scss";
-
-
-// const inter = Inter({ subsets: ["latin"] });
-
+import React from 'react'
+import SigninForm from './_components/SinginForm'
+import { MyMetadata } from '@/interfaces/MetaData';
 
 
 export async function generateMetadata(): Promise<MyMetadata> {
   return {
-    title: `Nextjs14 with Supabase June 2024`,
-    description: "MyApp",
-    url: `/`,
+    title: `SignIn`,
+    description: "Signin Page",
+    url: `/signin`,
     authors: [
       { name: 'Amit Upadhyay', url: 'https://github.com/AmitUpadhyay878' },
     ],
@@ -21,12 +16,12 @@ export async function generateMetadata(): Promise<MyMetadata> {
     referrer: 'origin-when-cross-origin',
     keywords: ['nextjs14', 'supabase', 'Nextjs14'],
     openGraph: {
-      title: `Nextjs14 with Supabase June 2024`,
-      description: "My App",
+      title: `SignIn`,
+      description: "Signin Page",
       images: [], // You can add image URLs here
     },
     alternates: {
-      canonical: `/`,
+      canonical: `/signin`,
       languages: {
         'en-US': '/en-US',
       },
@@ -46,10 +41,15 @@ export async function generateMetadata(): Promise<MyMetadata> {
     },
   };
 }
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
-  return (children);
+
+
+const Singin = () => {
+  return (
+    <>
+    <div>Singin</div>
+    <SigninForm />
+    </>
+  )
 }
+
+export default Singin
