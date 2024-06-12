@@ -14,7 +14,7 @@ export default function Layout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className} suppressHydrationWarning={true}>{children}</body>
     </html>
   );
 }
