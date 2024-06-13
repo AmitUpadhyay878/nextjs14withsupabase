@@ -46,7 +46,7 @@
 import { createMiddlewareClient } from '@supabase/auth-helpers-nextjs'
 import { NextRequest, NextResponse } from 'next/server'
 export async function middleware(req: NextRequest) {
-    const authURL = ['/signin', '/register']
+    const authURL = ['/signin', '/register','/forgot-password']
 
     const res = NextResponse.next()
     const supabase = createMiddlewareClient({ req, res })

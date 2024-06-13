@@ -1,14 +1,14 @@
 import React from 'react'
-import RegisterForm from './_components/RegisterForm'
+import ForgotPasswordForm from './_components/ForgortPasswordForm'
 import { MyMetadata } from '@/interfaces/MetaData';
 import Link from 'next/link';
 
 
 export async function generateMetadata(): Promise<MyMetadata> {
   return {
-    title: `Register`,
-    description: "Register Page",
-    url: `/register`,
+    title: `SignIn`,
+    description: "Signin Page",
+    url: `/signin`,
     authors: [
       { name: 'Amit Upadhyay', url: 'https://github.com/AmitUpadhyay878' },
     ],
@@ -17,12 +17,12 @@ export async function generateMetadata(): Promise<MyMetadata> {
     referrer: 'origin-when-cross-origin',
     keywords: ['nextjs14', 'supabase', 'Nextjs14'],
     openGraph: {
-      title: `Register`,
-      description: "Register Page",
+      title: `SignIn`,
+      description: "Signin Page",
       images: [], // You can add image URLs here
     },
     alternates: {
-      canonical: `/register`,
+      canonical: `/signin`,
       languages: {
         'en-US': '/en-US',
       },
@@ -43,13 +43,15 @@ export async function generateMetadata(): Promise<MyMetadata> {
   };
 }
 
-const RegisterPage = () => {
+
+const ForGorPasswordPage = async() => {
+
   return (
-  <>
-    {/* <RegisterForm /> */}
+    <>
+    <ForgotPasswordForm />
 
-
-    <section className='gradient-form md:h-screen flex items-center justify-center mx-auto'>
+      {/* Server side form Start*/}
+      {/* <section className='gradient-form md:h-screen flex items-center justify-center mx-auto'>
     <div className='container py-6 px-6 h-full'>
       <div className=' flex justify-center items-center flex-wrap h-full g-6 text-gray-800'>
         <div className=''>
@@ -63,45 +65,45 @@ const RegisterPage = () => {
                    
                     </h4>
                   </div>
-                  <form action="/api/auth/register" method="post">
+                  <form action='/api/auth/signin' method='post'>
                     <p className='mb-4'>
-                      Please Sign up if you haven't an account
+                      Please Sign in if you already have an account
                     </p>
                     <hr/>
                     <br/>
-                    
                     <div className='mb-4'>
                       <input
                         type='email'
-                        className={`form-control  block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none`}
+                        className={`form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none`}
                         placeholder='Enter email'
-                        name="email"
+                       name="email"
                       />
-                       
+                   
                     </div>
                     <div className='mb-4'>
                       <input
                         type='password'
-                        className={`form-control  block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none`}
+                        className={`form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none`}
                         placeholder='Enter password'
-                        name="password"
+                       name="password"
                       />
-
+                     
                     </div>
                     <div className='text-center pt-1 mb-5 mt-8 pb-1'>
                       <button
                         className='bg-green inline-block px-6 py-2.5 text-black font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:text-purple-50 hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out w-full mb-3'
                       >
-                        Sign up
+                        Sign In
                       </button>
+                     
                     </div>
                     <div className='flex items-center justify-between pb-6'>
-                      <p className='mb-0 mr-2'>Do you have an account?</p>
+                      <p className='mb-0 mr-2'>Doesn't have an account?</p>
                       <Link
-                        href="/signin"
+                       href='/register'
                         className='inline-block px-6 py-2 border-2 border-green-600 text-green-600 font-medium text-xs leading-tight uppercase rounded hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out'
                       >
-                       Sign In
+                       Register
                       </Link>
                     </div>
                   </form>
@@ -112,10 +114,10 @@ const RegisterPage = () => {
         </div>
       </div>
     </div>
-  </section>
-
-  </>
+  </section> */}
+      {/* Server side form End*/}
+    </>
   )
 }
 
-export default RegisterPage
+export default ForGorPasswordPage

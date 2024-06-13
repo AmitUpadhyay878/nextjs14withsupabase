@@ -1,7 +1,7 @@
 // import { supabase,supabaseAdmin } from "@/lib/supabase";
 import AboutusSection from "./_components/AboutusSection";
 import HeroSection from "./_components/HeroSection";
-
+import styles from './_components/style'
 
 export default function Home() {
 
@@ -20,7 +20,11 @@ export default function Home() {
 
   return (
     <>
+     <div className={`bg-primary ${styles.flexStart}`}>
+    <div className={`${styles.boxWidth}`}>
    <HeroSection />
+    </div>
+  </div>
    <AboutusSection />
     </>
   );

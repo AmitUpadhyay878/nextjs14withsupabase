@@ -16,7 +16,9 @@ export async function POST(req:NextRequest){
             cookies:()=>cookieStore 
     })
 
-    await supabase
+
+    try{
+        const {data, error}  = await supabase
     .auth
     .signUp({
         email,password,
@@ -25,8 +27,26 @@ export async function POST(req:NextRequest){
         }
     })
 
-return NextResponse.redirect(url.origin,{
-    status:301
-})
 
+        // Check for errors in the sign-up process
+        if (error) {
+            console.error("Sign-up error:", error.message);
+            return NextResponse.json({ error: error.message }, { status: 400 });
+        }
+
+        // Handle case where user is null
+        if (data.user === null) {
+            console.error("User is null after sign-up.");
+            return NextResponse.json({ error: "User could not be created." }, { status: 400 });
+        }
+
+        // Redirect on successful sign-up
+        return NextResponse.redirect(url.origin, { status: 301 });
+
+    }catch (err) {
+        console.error("Unexpected error:", err);
+        return NextResponse.json({ error: "An unexpected error occurred." }, { status: 500 });
+    }
+
+        
 }

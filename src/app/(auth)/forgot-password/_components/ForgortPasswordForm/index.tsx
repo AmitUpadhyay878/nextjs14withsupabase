@@ -5,9 +5,12 @@ import { useRouter } from 'next/navigation'
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 
-const SigninForm =() => {
+const ForgotPasswordForm =() => {
 
-  const {register, handleSubmit, formState:{errors},setError} = useForm()
+  const [showPass ,setShowPass] = useState<boolean>(false)
+  const [showConfPass ,setConfShowPass] = useState<boolean>(false)
+
+  const {register, handleSubmit, formState:{errors},setError,watch} = useForm()
   const router = useRouter()
 
   const handleFormData =async(event:any)=>{
@@ -47,38 +50,13 @@ const SigninForm =() => {
                   </div>
                   <form onSubmit={handleSubmit(handleFormData)}>
                     <p className='mb-4'>
-                      Please Sign in if you already have an account
+                      Please Reset Password of your account
                     </p>
                     <hr/>
                     <br/>
-                    <div className='mb-4'>
+                    <div className='mb-4 '>
                       <input
-                        type='email'
-                        className={`form-control  ${errors.email && "border-red-600"} block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none`}
-                        placeholder='Enter email'
-                        {...register('email', {
-                          required: 'Email is required',
-                          pattern: {
-                            value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
-                            message: 'Invalid email address',
-                          },
-                        })}
-                      />
-                        {errors.email && (
-                                                    <p className="text-red-600">
-                                                        {typeof errors.email
-                                                            .message ===
-                                                        'string'
-                                                            ? errors.email
-                                                                  .message
-                                                            : 'An error occurred'}
-                                                    </p>
-                                                )}
-                       
-                    </div>
-                    <div className='mb-4'>
-                      <input
-                        type='password'
+                        type={`${!showPass? "password" : "text"}`}
                         className={`form-control ${errors.password && "border-red-600"} block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none`}
                         placeholder='Enter password'
                         {...register('password',{
@@ -97,6 +75,7 @@ const SigninForm =() => {
                           },
                         })}
                       />
+                      <span onClick={()=>setShowPass((prev)=>!prev)}>show</span>
                       {errors.password && (
                                                     <p className="text-red-600">
                                                         {typeof errors.password
@@ -108,15 +87,36 @@ const SigninForm =() => {
                                                     </p>
                                                 )}
                     </div>
-                     <Link href="/forgot-password" className=' hover:text-red-800 ml-[128px]'>
-                       forgot a apassword?
-                     </Link>
+                    <div className='mb-4'>
+                      <input
+                        type={`${!showConfPass ? 'password' :'text'}`} 
+                        className={`form-control ${errors.password && "border-red-600"} block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none`}
+                        placeholder='Enter confirm password'
+                        {...register('confirmpassword',{
+                          required: 'Confirm Password is required',
+                          validate: (value) =>
+                            value === watch('password') || 'Passwords do not match',
+                        })}
+                      />
+                       <span onClick={()=>setConfShowPass((prev)=>!prev)}>show</span>
+                      {errors.confirmpassword && (
+                                                    <p className="text-red-600">
+                                                        {typeof errors.confirmpassword
+                                                            .message ===
+                                                        'string'
+                                                            ? errors.confirmpassword
+                                                                  .message
+                                                            : 'An error occurred'}
+                                                    </p>
+                                                )}
+                    </div>
+                    
                     <div className='text-center pt-1 mb-5 mt-8 pb-1'>
                       <button
                         className='bg-green inline-block px-6 py-2.5 text-black font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:text-purple-50 hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out w-full mb-3'
                         type='submit'
                       >
-                        Sign In
+                        Reset Password
                       </button>
                       {errors.error_description && (
                                                     <p className="text-red-600">
@@ -130,16 +130,6 @@ const SigninForm =() => {
                                                 )}
 
                     </div>
-                    <div className='flex items-center justify-between pb-6'>
-                      <p className='mb-0 mr-2'>Doesn't have an account?</p>
-                      <button
-                       type='button'
-                        className='inline-block px-6 py-2 border-2 border-green-600 text-green-600 font-medium text-xs leading-tight uppercase rounded hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out'
-                        onClick={()=>router.push("/register")}
-                      >
-                       Register
-                      </button>
-                    </div>
                   </form>
                 </div>
               </div>
@@ -152,4 +142,4 @@ const SigninForm =() => {
   )
 }
 
-export default SigninForm
+export default ForgotPasswordForm

@@ -48,10 +48,10 @@ const Singin = async() => {
 
   return (
     <>
-    {/* <SigninForm /> */}
+    <SigninForm />
 
       {/* Server side form Start*/}
-      <section className='gradient-form md:h-screen flex items-center justify-center mx-auto'>
+      {/* <section className='gradient-form md:h-screen flex items-center justify-center mx-auto'>
     <div className='container py-6 px-6 h-full'>
       <div className=' flex justify-center items-center flex-wrap h-full g-6 text-gray-800'>
         <div className=''>
@@ -114,7 +114,7 @@ const Singin = async() => {
         </div>
       </div>
     </div>
-  </section>
+  </section> */}
       {/* Server side form End*/}
     </>
   )
